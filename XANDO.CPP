@@ -1,222 +1,99 @@
 #include<iostream.h>
 #include<conio.h>
-    int gameOver = 0;
-    char arr[10] = {'o','1','2','3','4','5','6','7','8','9'};
-void displayBoard(){
-    clrscr();
-    cout << arr[1] << " | " << arr[2] << " | " << arr[3] << endl;
-    cout << "- + - + -\n";
-    cout << arr[4] << " | " << arr[5] << " | " << arr[6] << endl;
-    cout << "- + - + -\n";
-    cout << arr[7] << " | " << arr[8] << " | " << arr[9] << endl;
-}
-void gameLogic(){
-   if(arr[1]==arr[4] && arr[4]==arr[7]){
-      if(arr[1]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   if(arr[2]==arr[5] && arr[5]==arr[8]){
-      if(arr[1]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   if(arr[3]==arr[6] && arr[6]==arr[9]){
-      if(arr[1]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   if(arr[1]==arr[2] && arr[2]==arr[3]){
-      if(arr[1]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   else if(arr[4]==arr[5] && arr[5]==arr[6]){
-      if(arr[4]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   else if(arr[7]==arr[8] && arr[8]==arr[9]){
-      if(arr[7]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   else if(arr[1]==arr[5] && arr[5]==arr[9]){
-      if(arr[1]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   }
-   else if(arr[3]==arr[5] && arr[5]==arr[7]){
-      if(arr[3]=='X'){
-      cout << "Player 1 wins" << endl;
-      gameOver = 1;
-      }
-      else{
-      cout << "Player 2 wins" << endl;
-      gameOver = 1;
-      }
-   } 
-}
-int playerOneTurn(){
-   if(gameOver == 1){return 1;}
- int player1Turn;
- cout << "Player 1 Turn : ";
- cin >> player1Turn;
- switch(player1Turn){
-       case 1:
-	    arr[1] = 'X';
-	displayBoard();
-	gameLogic();
-	break;
-       case 2:
-	    arr[2] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 3:
-	    arr[3] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 4:
-	    arr[4] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 5:
-	    arr[5] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 6:
-	    arr[6] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 7:
-	    arr[7] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 8:
-	    arr[8] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       case 9:
-	    arr[9] = 'X';
-	    displayBoard();
-	gameLogic();
-	break;
-       default:
-	    cout << "Inavlid Choice !";
- }
-}
-int playerTwoTurn(){
-   if(gameOver == 1){return 1;}
- int player2Turn;
- cout << "Player 2 Turn : ";
- cin >> player2Turn;
- switch(player2Turn){
-       case 1:
-	    arr[1] = 'O';
-	displayBoard();
-        gameLogic();
-        break;
-       case 2:
-	    arr[2] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 3:
-	    arr[3] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 4:
-	    arr[4] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 5:
-	    arr[5] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 6:
-	    arr[6] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 7:
-	    arr[7] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 8:
-	    arr[8] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       case 9:
-	    arr[9] = 'O';
-	    displayBoard();
-        gameLogic();
-        break;
-       default:
-	    cout << "Inavlid Choice !";
- } 
+
+int gameOver = 0, player1Points = 0, player2Points = 0;
+char arr[10];
+
+void resetBoard() {
+    for (int i = 1; i < 10; i++) {
+        arr[i] = '0' + i; // Reset board numbers 1-9
+    }
 }
 
-
-int main(){
+void displayBoard() {
     clrscr();
-    int i = 1;
-    while(i<=4){
-    playerOneTurn();
-    playerTwoTurn();
-    i++;
+    cout << "Tic-Tac-Toe\n\n";
+    cout << "Player 1 (X)  -  Player 2 (O)\n";
+    cout << "Points: " << player1Points << " - " << player2Points << "\n\n";
+
+    cout << " " << arr[1] << " | " << arr[2] << " | " << arr[3] << endl;
+    cout << "---+---+---\n";
+    cout << " " << arr[4] << " | " << arr[5] << " | " << arr[6] << endl;
+    cout << "---+---+---\n";
+    cout << " " << arr[7] << " | " << arr[8] << " | " << arr[9] << endl;
+}
+
+void gameLogic() {
+    int winCombos[8][3] = {
+        {1, 2, 3}, {4, 5, 6}, {7, 8, 9}, // Rows
+        {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, // Columns
+        {1, 5, 9}, {3, 5, 7}  // Diagonals
+    };
+
+    for (int i = 0; i < 8; i++) {
+        int a = winCombos[i][0], b = winCombos[i][1], c = winCombos[i][2];
+        if (arr[a] == arr[b] && arr[b] == arr[c]) {
+            if (arr[a] == 'X') {
+                cout << "Player 1 wins!\n";
+                player1Points++;
+            } else {
+                cout << "Player 2 wins!\n";
+                player2Points++;
+            }
+            gameOver = 1;
+            return;
+        }
     }
-    playerOneTurn();
-    if(gameOver == 0){
-    cout << "It's a Tie";
+}
+
+int playerTurn(int player) {
+    if (gameOver == 1) return 1;
+
+    int choice;
+    char mark = (player == 1) ? 'X' : 'O';
+
+    cout << "Player " << player << " (" << mark << ") Turn: ";
+    cin >> choice;
+
+    if (choice < 1 || choice > 9 || arr[choice] == 'X' || arr[choice] == 'O') {
+        cout << "Invalid move! Try again.\n";
+        return playerTurn(player);
     }
+
+    arr[choice] = mark;
+    displayBoard();
+    gameLogic();
+    return 0;
+}
+
+int main() {
+    clrscr();
+    char playAgain;
+
+    do {
+        resetBoard();
+        gameOver = 0;
+        displayBoard();
+
+        for (int i = 0; i < 4; i++) {
+            playerTurn(1);
+            if (gameOver) break;
+            playerTurn(2);
+            if (gameOver) break;
+        }
+
+        if (!gameOver) {
+            playerTurn(1);
+            if (!gameOver) cout << "It's a tie!\n";
+        }
+
+        cout << "\nCurrent Score - Player 1: " << player1Points << " | Player 2: " << player2Points << "\n";
+        cout << "Do you want to play again? (y/n): ";
+        cin >> playAgain;
+    } while (playAgain == 'y' || playAgain == 'Y');
+
+    cout << "Final Score - Player 1: " << player1Points << " | Player 2: " << player2Points << "\n";
+    cout << "Thanks for playing!";
     getch();
     return 0;
-
 }
